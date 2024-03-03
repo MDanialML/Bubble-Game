@@ -1,5 +1,5 @@
 var clutter = "";
-let timer = 5;
+let timer = 30;
 let raise_num = 0;
 let hitNumber;
 
