@@ -1,5 +1,7 @@
 var clutter = "";
-let timer = 60;
+let timer = 5;
+let raise_num = 0;
+let hitNumber;
 
 function putNumber() {
     for(i = 1; i <= 70; i++)
@@ -18,21 +20,32 @@ function runTimer() {
         }
         else{
             clearInterval(timeInt);
+            document.querySelector(".bottom").innerHTML = `<h1>Game Over<\h1>`;
         }
         
     },1000); 
 }
 
 function updateHit() {
-    
-    setInterval(() => {
-        let r_number = Math.floor(Math.random()*10);
-        document.querySelector("#hit-number").textContent = r_number;
-        
-    }, 1000);
+        hitNumber = Math.floor(Math.random()*10);
+        document.querySelector("#hit-number").textContent = hitNumber;
     
 }
 
+function upDateScore() {
+    raise_num += 10;
+    document.querySelector("#score").textContent = raise_num;
+}
+
+document.querySelector(".bottom").addEventListener("click",(detail)=>{
+    let clicked_number = Number(detail.target.textContent);
+    if(clicked_number === hitNumber)
+    {
+        upDateScore();
+        putNumber();
+        updateHit();
+    }
+});
 
 //functions calls
 putNumber();
